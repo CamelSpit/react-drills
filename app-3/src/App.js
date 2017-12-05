@@ -1,18 +1,44 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import List from "./List";
+import onEnter from "react-onenterkeydown";
 
 class App extends Component {
+
+  constructor(){
+    super()
+
+    this.state = {
+      userInput:"",
+      dataArray : ['this','is','my','boom','stick'],
+      filteredArray:[]
+    }
+
+    this.updateInput = this.updateInput.bind(this)
+  }
+
+  updateInput(newString){
+    this.setState({
+      userInput:newString
+    })
+  }
+
+  enterKey(e){
+      var tempArray = this.state.dataArray.filter(item=> item===this.state.userInput);
+          this.setState({
+            filteredArray:tempArray
+          })
+      e.preventDefault();
+  }
+
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div>
+          <form onSubmit={e=>this.enterKey(e)}>
+          <input onChange={e=>this.updateInput(e.target.value)} />
+          </form>
+           <List list={this.state.dataArray}/>
+           {this.state.filteredArray}
       </div>
     );
   }
