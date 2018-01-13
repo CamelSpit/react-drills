@@ -26,7 +26,7 @@ componentWillMount(){
 
     render(){
         return(
-            <div>{this.state.pokemon}</div>
+            <div>{JSON.stringify(this.state.pokemon)}</div>
         )
     }
 

@@ -15,7 +15,7 @@ class App extends Component {
           </nav>
           <Switch>
             <Route path='/pokemon' component={Products}/>
-            <Route path='/stats' component={Display}/>
+            <Route path='/stats/:name' component={Display}/>
           </Switch>
       </div>
     );
